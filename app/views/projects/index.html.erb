@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Задачи</h1>
+
+<table>
+  <tr>
+    <p><%= button_to "+", :action => "create" %></p>
+    <th></th>   
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @projects.each do |project| %>
+    <tr><strong><%= project.title %></strong></tr>
+  <% project.todos.each do |todo| %>
+    <ul>
+      <li><%= todo.text %></li>
+    </ul>
+  <% end %>
+<% end %>
+
+<h1>Новая задача</h1> 
+    <%= form_for :todo, url: todos_path  do |form| %>
+        <%= form.label :text %><br>  
+        <%= form.text_field :text %>
+     <p><%= form.collection_select :id, Project.all, :id, :title %></p>
+    <p>    <%= form_tag root_path, id: "form" do %>
+                <%= link_to "ОТМЕНА", root_path, id:" " %>
+                <%= link_to "OK", new_todo_path, id: "your_link" %></p>
+           <% end %>
+    <% end %>  
+    </tr>
+</table>
+

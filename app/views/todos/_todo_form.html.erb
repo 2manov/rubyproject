@@ -1,0 +1,12 @@
+<div id='todo_form'>
+  <%= form_for :todo, url: todos_path do |form| %>
+    <p>
+      <%= form.label :project_id %>
+      <%= form.collection_select :project_id, Project.all, :id, :title %>
+    </p>
+    <p>
+      <%= form.label :text %>
+      <%= form.text_field :text %>
+    </p>
+  <% end %>
+</div>
